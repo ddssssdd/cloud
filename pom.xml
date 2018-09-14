@@ -10,6 +10,8 @@
     <version>1.0</version>
     <modules>
         <module>first-ribbon-client</module>
+        <module>cxf-client</module>
+        <module>feign-client</module>
     </modules>
 
 

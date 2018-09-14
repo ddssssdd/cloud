@@ -1,10 +1,7 @@
 package com.sfu.cloud.firstcloudprovider;
 
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -24,12 +21,34 @@ public class HomeController {
         return canVisit?"can":"can't";
     }
 
+    @RequestMapping("/hello")
+    public String hello(){
+        return "hello, world";
+    }
+
+    @RequestMapping(value = "/person/create",method = RequestMethod.POST,consumes = MediaType.APPLICATION_JSON_VALUE)
+    public String createPerson(@RequestBody Person person){
+        System.out.println(person);
+        return "Success, Person Id:"+ person.getPersonId();
+    }
+
+    @RequestMapping(value = "/person/createXML",method = RequestMethod.POST,consumes = MediaType.APPLICATION_XML_VALUE,
+    produces = MediaType.APPLICATION_XML_VALUE)
+    public String createPersonXML(@RequestBody Person person){
+        System.out.println(person);
+        person.setName(person.getName()+"-XML");
+        return "<result><message>success</message></result>";
+    }
+
 }
 class Person{
     private Integer personId;
     private String name;
     private Integer age;
     private String message;
+    public Person(){
+
+    }
     public Person(Integer personId,String name,Integer age){
         this.personId = personId;
         this.name = name;
