@@ -1,9 +1,12 @@
 package com.sfu.cloud.firstcloudprovider;
 
+
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+
+import static java.lang.Thread.sleep;
 
 @RestController
 public class HomeController {
@@ -38,6 +41,18 @@ public class HomeController {
         System.out.println(person);
         person.setName(person.getName()+"-XML");
         return "<result><message>success</message></result>";
+    }
+
+
+    @GetMapping("/normalHello")
+    public String normalHello(HttpServletRequest request){
+        return "hello, this is a normal world.";
+    }
+
+    @GetMapping("/errorHello")
+    public String errorHello(HttpServletRequest request) throws Exception{
+        sleep(10000);
+        return "Error Hello world";
     }
 
 }

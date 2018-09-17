@@ -15,6 +15,7 @@
         <module>first-ek-server</module>
         <module>first-cloud-provider</module>
         <module>first-cloud-server</module>
+        <module>first-hystrix-client</module>
     </modules>
 
 

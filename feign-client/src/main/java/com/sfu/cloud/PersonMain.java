@@ -1,6 +1,5 @@
 package com.sfu.cloud;
 
-import com.sun.xml.internal.ws.developer.JAXBContextFactory;
 import feign.Feign;
 import feign.gson.GsonDecoder;
 import feign.gson.GsonEncoder;
@@ -28,10 +27,10 @@ public class PersonMain {
 
 
         person.personId = 200;
-        JAXBContextFactory jaxbContextFactory = new JAXBContextFactory.Builder().build();
+        feign.jaxb.JAXBContextFactory jaxbContextFactory = new feign.jaxb.JAXBContextFactory.Builder().build();
 
-        PersonClient updateXmlService = Feign.builder().encoder(new JAXBEncoder())
-                .decoder(new JAXBDecoder())
+        PersonClient updateXmlService = Feign.builder().encoder(new JAXBEncoder(jaxbContextFactory))
+                .decoder(new JAXBDecoder(jaxbContextFactory))
                 .target(PersonClient.class,"http://localhost:8080/");
         PersonClient.Result resultXml = updateXmlService.createPersonXML(person);
         System.out.println(resultXml);

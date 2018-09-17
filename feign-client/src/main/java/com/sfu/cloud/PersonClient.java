@@ -23,17 +23,50 @@ public interface PersonClient {
     Result createPersonXML(Person person);
 
 
-    @Data
+
     @XmlRootElement
     class Person{
-        @XmlElement
+
         Integer personId;
-        @XmlElement
+
         String name;
-        @XmlElement
+
         Integer age;
-        @XmlElement
+
         String message;
+
+        @XmlElement
+        public Integer getPersonId(){
+            return personId;
+        }
+        public void setPersonId(Integer personId){
+            this.personId =personId;
+        }
+        @XmlElement
+        public String getName(){
+            return this.name;
+        }
+
+        public void setName(String name){
+            this.name = name;
+        }
+        @XmlElement
+        public Integer getAge(){
+            return this.age;
+        }
+
+        public void setAge(Integer age){
+            this.age = age;
+        }
+        @XmlElement
+        public String getMessage(){
+            return  this.message;
+        }
+
+        public void setMessage(String message){
+            this.message = message;
+        }
+
     }
 
     @Data
