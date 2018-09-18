@@ -55,6 +55,11 @@ public class HomeController {
         return "Error Hello world";
     }
 
+    @GetMapping("/say/{name}")
+    public String sayName(@PathVariable String name){
+        return "Hello, "+ name +" world.";
+    }
+
 }
 class Person{
     private Integer personId;
